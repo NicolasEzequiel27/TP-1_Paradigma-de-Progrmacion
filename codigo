@@ -1,0 +1,65 @@
+# Inicializar contadores y totales
+totalTipo1 = 0
+totalTipo2 = 0
+totalTipo3 = 0
+contTipo1 = 0
+contTipo2 = 0
+contTipo3 = 0
+
+# Recorrer los artículos
+while True:
+    codigo = int(input("Ingrese el código de artículo (o -1 para finalizar): "))
+    if codigo == -1:
+        break
+    cantidad = int(input("Ingrese la cantidad vendida: "))
+    tipo = int(input("Ingrese el tipo de artículo (1, 2 o 3): "))
+    precio = float(input("Ingrese el precio unitario: "))
+
+    if tipo == 1:
+        totalTipo1 += cantidad * precio
+        contTipo1 += cantidad
+    elif tipo == 2:
+        totalTipo2 += cantidad * precio
+        contTipo2 += cantidad
+    elif tipo == 3:
+        totalTipo3 += cantidad * precio
+        contTipo3 += cantidad
+
+    # Calcular promedios
+    if contTipo1 != 0:
+        promedioTipo1 = totalTipo1 / contTipo1
+    if contTipo2 != 0:
+        promedioTipo2 = totalTipo2 / contTipo2
+    if contTipo3 != 0:
+        promedioTipo3 = totalTipo3 / contTipo3
+
+    # Comprobar si supera el promedio en $400 y calcular nuevo precio
+    importe = cantidad * precio
+    if tipo == 1 and importe > (promedioTipo1 + 400):
+        nuevoPrecio = precio * 1.07
+        print(f"Nuevo precio para el artículo {codigo}: {nuevoPrecio:.2f}")
+    elif tipo == 2 and importe > (promedioTipo2 + 400):
+        nuevoPrecio = precio * 1.07
+        print(f"Nuevo precio para el artículo {codigo}: {nuevoPrecio:.2f}")
+    elif tipo == 3 and importe > (promedioTipo3 + 400):
+        nuevoPrecio = precio * 1.07
+        print(f"Nuevo precio para el artículo {codigo}: {nuevoPrecio:.2f}")
+
+# Mostrar resultados
+print("\nResumen:")
+
+if contTipo1 > contTipo2 and contTipo1 > contTipo3:
+    print("El tipo de producto que más se vendió es el Tipo 1 con", contTipo1, "unidades")
+elif contTipo2 > contTipo1 and contTipo2 > contTipo3:
+    print("El tipo de producto que más se vendió es el Tipo 2 con", contTipo2, "unidades")
+elif contTipo3 > contTipo1 and contTipo3 > contTipo2:
+    print("El tipo de producto que más se vendió es el Tipo 3 con", contTipo3, "unidades")
+
+print("Importes totales por tipo:")
+print("Tipo 1:", totalTipo1)
+print("Tipo 2:", totalTipo2)
+print("Tipo 3:", totalTipo3)
+print("Precio Promedio Tipo 1",promedioTipo1)
+print("Precio Promedio Tipo 2",promedioTipo2)
+print("Precio Promedio Tipo 3",promedioTipo3)
+
